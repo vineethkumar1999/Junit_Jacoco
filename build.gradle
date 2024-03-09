@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group 'org.gradleJunit'
+version '1.0-gradlejunit'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.jacoco:org.jacoco.agent:0.8.8'
+
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // Generate report after tests
+    jacoco {
+        destinationFile = file("build/jacoco/test.exec")
+    }
+}
